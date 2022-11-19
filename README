@@ -1,0 +1,41 @@
+# STM32F4 Driver For MS8607
+
+An I2C driver for the MS8607 Pressure, Humidity, and Temperature sensor for the STM32.
+
+[datasheet](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS8607-02BA01%7FB3%7Fpdf%7FEnglish%7FENG_DS_MS8607-02BA01_B3.pdf%7FCAT-BLPS00182)
+[buy from adafruit](https://www.adafruit.com/product/4716)
+
+## Getting Started
+
+
+
+### Prerequisites
+
+
+
+### Installing
+
+
+## Deployment
+
+Add additional notes to deploy this on a live system
+
+## Built With
+
+  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
+    for the Code of Conduct
+  - [Creative Commons](https://creativecommons.org/) - Used to choose
+    the license
+
+## Contributing
+
+Feel free to submit a PR or an issue.
+
+
+## License
+
+This project is licensed under the [GPLv3](LICENSE.md)
+
+## Acknowledgments
+
+
