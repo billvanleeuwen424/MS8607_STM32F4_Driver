@@ -83,8 +83,9 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	int returnval = 0;
-	uint8_t buf[8];
-	int16_t tempval;
+	uint8_t measuereRH[8];
+	uint8_t rawHumidityValues[3];
+	uint16_t tempval;
 	float humidity;
 
   /* USER CODE END 1 */
@@ -119,15 +120,24 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      buf[0] = 0xE5;
+      measuereRH[0] = 0xE5;
 	  //measure humidity
-	  returval = HAL_I2C_Master_Transmit(&hi2c2,HUMIDITYADDRESS, 0x00, 8,  HAL_MAX_DELAY);
+      returnval = HAL_I2C_Master_Transmit(&hi2c2,HUMIDITYADDRESS, measuereRH, 1,  HAL_MAX_DELAY);
 	  //read from humidity register
-	  returval = HAL_I2C_Master_Transmit(&hi2c2,HUMIDITYADDRESS, 0x00, 8,  HAL_MAX_DELAY);
+      returnval = HAL_I2C_Master_Receive(&hi2c2, HUMIDITYADDRESS, rawHumidityValues, 3,HAL_MAX_DELAY);
+
+
+      tempval = (rawHumidityValues[0] << 8 | rawHumidityValues[1]);
+      //calculate humidity from data received
+      humidity = (125 * ((float)tempval / (float)65536)) - 6;	//calculation from datasheet page 11
+
+
     /* USER CODE END WHILE */
-	  //strcpy((char *)buf, "Hello\r\n");
-	  HAL_UART_Transmit(&huart3, buf, strlen((char *)buf), HAL_MAX_DELAY);
-	  HAL_Delay(500);
+
+
+	  //returnval = HAL_UART_Transmit(&huart3,,,10);// Sending in normal mode
+	  HAL_Delay(1000);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
